@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>3D Printer </title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<!--<link rel="stylesheet" href="css/dashboard.css">-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/RecordRTC.js"></script>
+
+</head>
+<body>
+    
+<div class="container">
+     <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Dashboard</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li> <a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+              <li class="dropdown">
+                <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>Peter <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li data-toggle="modal" data-target="#user-info-modal"><a href="#" >Change Password</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    <div class="row ">
+        <div class="col-xs-12 col-md-6">
+             <div class="row ">
+                 <div class="col-xs-12">
+                    <div class="panel panel-primary state">
+                        <div class="panel-heading">
+                            <h3 class="panel-title glyphicon glyphicon-info-sign">State</h3>
+                        </div>
+                        <div class="panel-body">
+                    <p style="display:inline">File :</p> <p id ="p1" style="display:inline"></p></br></br>
+                        <p style="display:inline">Filament type :</p> <p id = "p2" style="display:inline"></p></br></br>
+                        <p style="display:inline">Object Height :</p> <p id="p3" style="display:inline"></p> </br></br>
+
+                        <h style ="font-size:20px;">Temperatures</h>
+                        <p></p>
+                                <div id="data">
+
+                        <p style="display:inline">Nozzle Temperature:  </p> <label id="temp1" style="display:inline"></label></br></br>
+                        <p style="display:inline">Bed Temperature  :  </p>  <label id="temp2" style="display:inline"></label></br></br> 
+                        <p style="display:inline">Chamber Temperature  : </p> <label id="temp3" style="display:inline"></label></br></br>  
+
+                        </div>
+                        <button type="button" class="btn btn-primary glyphicon glyphicon-print ">Print</button>
+                        <button type="button" class="btn btn-success glyphicon glyphicon-pause ">Pause</button>
+                        <button type="button" class="btn btn-info glyphicon glyphicon-stop">Cancel</button>
+                        </div>
+
+                    </div> 
+              </div>
+                <div class="row ">
+                    <div class="col-xs-12">
+                    <div class="panel panel-success files">
+                    <div class="panel-heading">
+                        <h3 class="panel-title glyphicon glyphicon-list">Files</h3>
+                    </div>
+                    <div class="panel-body">
+                        <button type="button" class="btn btn-primary glyphicon glyphicon-cloud-upload ">Upload file to Server</button>
+
+
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            </div>
+
+        </div>
+
+         <div class="col-xs-12 col-md-6">
+             
+
+            <div class="panel panel-success GUI">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Performance Monitor</h3>
+                </div>
+                <div class="panel-body">
+                 <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#temp">Temperature</a></li>
+            <li><a data-toggle="tab" href="#video">Video</a></li>
+            <li><a data-toggle="tab" href="#gcode">GCode Viewer</a></li>
+            <li><a data-toggle="tab" href="#timelapse">Timelapse</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div id="temp" class="tab-pane fade">
+
+
+            </div>
+            <div id="video" class="tab-pane fade">
+                   <video id="remote-video" autoplay=""  style="border:1px solid ; " width= "360px" height = "270px">
+                            Your browser does not support the video tag.
+                        </video>  
+                <input type="hidden" id="signalling_server" value="192.168.2.199:8100" title="<host>:<port>, default address is autodetected"/><br>
+                <button style ="border-radius:5px;box-shadow:10px 10px 5px #CED8F6;background-color:#F8E0E0;color:brown;width:120px;height:30px;font-family: Cursive;font-size:15px;" id="start" onclick="start();">Start</button>
+                <button  style ="border-radius:5px;box-shadow:10px 10px 5px #CED8F6;background-color:#F8E0E0;color:brown;width:120px;height:30px;font-family: Cursive;font-size:15px;" disabled id="stop" onclick="stop();">Stop</button>
+                <button  style ="border-radius:5px;box-shadow:10px 10px 5px #CED8F6;background-color:#F8E0E0;color:brown;width:120px;height:30px;font-family: Cursive;font-size:15px;"  id="startrec" disabled>StartREC</button>
+                <button  style ="border-radius:5px;box-shadow:10px 10px 5px #CED8F6;background-color:#F8E0E0;color:brown;width:120px;height:30px;font-family: Cursive;font-size:15px;"  id="stoprec" onclick="stoprecording();" disabled>StopREC</button>
+               <button  style ="border-radius:5px;box-shadow:10px 10px 5px #CED8F6;background-color:#F8E0E0;color:brown;width:120px;height:30px;font-family: Cursive;font-size:15px;" id="save" disabled>Save Video</button> 
+            </div>
+            <div id="gcode" class="tab-pane fade">
+
+            </div>
+            <div id="timelapse" class="tab-pane fade">
+
+            </div>
+          </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    
+
+
+
+   
+      </div>
+    <!--Container Div end-->
+
+
+
+
+
+
+    
+
+
+
+
+        <!--Modal Window start-->
+    <div class="modal fade" id="user-info-modal" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="userInfoModalLabel">Change Password</h4>
+      </div>
+      <div class="modal-body">
+   
+          <form id="identicalForm" class="form-horizontal"
+    data-fv-framework="bootstrap"
+    data-fv-icon-valid="glyphicon glyphicon-ok"
+    data-fv-icon-invalid="glyphicon glyphicon-remove"
+    data-fv-icon-validating="glyphicon glyphicon-refresh">
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label">Password</label>
+        <div class="col-xs-5">
+            <input type="password" class="form-control" name="password" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label">Retype password</label>
+        <div class="col-xs-5">
+            <input type="password" class="form-control" name="confirmPassword"
+                data-fv-identical="true"
+                data-fv-identical-field="password"
+                data-fv-identical-message="The password and its confirm are not the same" />
+        </div>
+    </div>
+</form>
+
+          
+          
+          
+    </div>
+      
+              <div class="modal-footer save">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save_password">Save changes</button>
+              </div>
+        
+        
+  </div>
+</div>
+        </div>
+        
+    <!-- Modal window end-->
+<script src="js/video.js"></script>	
+</body>
+</html>                                		
