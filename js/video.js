@@ -68,10 +68,13 @@
                 remoteVideoElement.src = URL.createObjectURL(event.stream);
                 remoteVideoElement.play();
                 startrec.disabled=false;
-                stoprec.disabled=false;
+                stoprec.disabled=true;
                 document.getElementById('startrec').onclick = function() {
                     mRecordRTC.addStream(event.stream);
-                mRecordRTC.startRecording();
+                    mRecordRTC.startRecording();
+                    document.getElementById("stop").disabled = true;
+                    stoprec.disabled=false;
+                    save.disabled=true;
                     };
    
             }
@@ -199,8 +202,9 @@
             }
 
             document.getElementById('save').onclick = function() {
-            //this.disabled = true;
             mRecordRTC.save();
+            this.disabled = true;
+            stoprec.disabled=true;
         };
             
             
@@ -211,6 +215,8 @@
 
                 mRecordRTC.writeToDisk();
                 save.disabled = false;
+                startrec.disabled=false;
+                document.getElementById("stop").disabled = false;
             });
                 
                 
