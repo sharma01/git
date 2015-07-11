@@ -49,4 +49,30 @@
      margin-top: 2px;
     }
     
+.chart{
+    background-color:none; 
+    height:300px;
+    width:500px;
+    border:1px solid black;
+    box-shadow:10px 10px 5px #CED8F6;
+    border-radius: 10px;
+}
 
+.footer{
+    background-color:grey;
+    height:35px; 
+    width:100%; 
+    position:fixed;
+    bottom :0px; 
+    left:-10px;
+    border-radius: 20px;
+}
+
+
+.printer_menu{
+    height:250px;
+    width:250px;
+    border:1px solid black;
+    box-shadow:10px 10px 5px #CED8F6;
+    border-radius: 15px;
+}
