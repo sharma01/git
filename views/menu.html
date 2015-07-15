@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>3D Printer Intel Design</title>
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="//www.chartjs.org/assets/Chart.min.js"></script>
+<script>
+jQuery(function(){
+        $("#update_password").click(function(){
+        $(".error").hide();
+        var hasError = false;
+        var passwordVal = $("#password").val();
+        var checkVal = $("#confirmpassword").val();
+        if (passwordVal == '') {
+            $("#password").after('<span class="error">Please enter a password.</span>');
+            hasError = true;
+        } else if (checkVal == '') {
+            $("#confirmpassword").after('<span class="error">Please re-enter your password.</span>');
+            hasError = true;
+        } else if (passwordVal != checkVal ) {
+            $("#confirmpassword").after('<span class="error">Passwords do not match.</span>');
+            hasError = true;
+        }
+        if(hasError == true) {return false;}
+    });
+});    
+    
+</script>
+
+</head>
+<body>
+    
+<div class="container">
+   
+  <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Dashboard</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li> <a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+              <li class="dropdown">
+                <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span><%= user.local.email %><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li data-toggle="modal" data-target="#user-info-modal"><a href="#" >Change Password</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+    </br> </br>
+    
+    <div class="menu">
+  
+      
+            <form type=get action="#">
+        
+        <table style="width:100%">
+  <tr>
+      <td><a href="/dashboard?name=elephant"> <div class="printer_menu" id = "printer1" value ="elephant" style="background-color:#00FFFF;"><img id ="p1" class="printer_image" src="/images/3dprinter.jpg" height="220px" width="230px"  value ="elephant" ></div></a> 
+		 </br> <p class="printer_text">Name : Elephant</p><p class="printer_text">Status: On-Hold</p>     
+      </td>
+      <td><a href="/dashboard?name=sparrow"> <div class="printer_menu" id = "printer2" value="sparrow" style = "background-color:#E6E6E6;"><img id ="p2" class="printer_image" src="/images/3dprinter.jpg" height="220px" width="230px" value ="sparrow"></div></a></br><p class="printer_text">Name : Sparrow</p><p class="printer_text">Status:Waiting</p>    
+      </td>
+      <td><a href="/dashboard?name=horse"><div class="printer_menu" id = "printer3" value="horse" style = "background-color:#BEF781;" > <img id ="p3" class="printer_image" src="/images/3dprinter.jpg" height="220px" width="230px" value ="horse"></div></a>
+          </br><p class="printer_text">Name : Horse</p><p class="printer_text">Status: Printing</p>
+      </td>
+      <td><a href="/dashboard?name=pegasus"><div class="printer_menu" id = "printer4" value="pegasus" style = "background-color:#F6CEEC;" ><img id ="p4" class="printer_image" src="/images/3dprinter.jpg" height="220px" width="230px" value ="pegasus"></div></a> 
+          </br><p class="printer_text">Name : Pegasus</p><p class="printer_text">Status: Paused</p>
+</td>
+  </tr>
+</form>
+</table> 
+
+     
+    </div>
+  
+
+        
+  </div>
+
+ <div class= "footer" >
+      <p style="text-align:center">All right reserved@3d-printer</p>
+      
+  </div>
+
+        <!--Modal Window start-->
+    <div class="modal fade" id="user-info-modal" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="userInfoModalLabel">Change Password</h4>
+      </div>
+      <div class="modal-body">
+   
+          <form id="identicalForm" method="post" action="/update" class="form-horizontal"
+    data-fv-framework="bootstrap"
+    data-fv-icon-valid="glyphicon glyphicon-ok"
+    data-fv-icon-invalid="glyphicon glyphicon-remove"
+    data-fv-icon-validating="glyphicon glyphicon-refresh">
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label">Password</label>
+        <div class="col-xs-5">
+            <input type="password" class="form-control" id="password" name="password" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label">Retype password</label>
+        <div class="col-xs-5">
+            <input type="password" class="form-control" id="confirmpassword" name="confirmpassword"
+                data-fv-identical="true"
+                data-fv-identical-field="password"
+                data-fv-identical-message="The password and its confirm are not the same" />
+        </div>
+    </div>
+
+
+    </div>
+      
+              <div class="modal-footer save">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="update_password">Save changes</button>
+              </div>
+        
+        
+  </div>
+</div>
+        </div></form>
+        
+    <!-- Modal window end-->
+</body>
+</html>                                		
