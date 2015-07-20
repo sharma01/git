@@ -9,31 +9,60 @@
     border-radius: 20px;
 }
 
-.printer_image{
 
-	   display: block;
-	   margin-left: auto;
-	   margin-right: auto;
-	   margin-top: 15px;
+.well{
+    height: auto;
+	width: 250px;
+	margin-top: 10px;
+	margin-left: 10px;
+    box-shadow:10px 10px 5px #A9F5E1;
+	   
+	padding: 5px;
+	
+}
+
+
+.thumbnail{
+
+   display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
  }
 
 .printer_text{
 
 	text-align: center;
-	font-family:monospace;
+		font-family:monospace;
 	font-size: 20px;
 	color: brown;
 
 }
 
+.temps1{
+		display: inline;
+		float:right;
+		width: 400px;
+	
+	}
+
 .temps{
 		display: inline;
 		float:right;
-	width: 300px;
+		width: 320px;
+	}
+
+
+.panel-title{
+
+display: inline;
+font-size: 18px;
 }
 
-.labels_left{
 
-		display: inline;
+.label{
+font-size: 14px;
 	
 }
+

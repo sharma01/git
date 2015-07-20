@@ -13,16 +13,25 @@ function getUrlParam(param)
 window.onload = function () {
 	var param = getUrlParam("name");
 	
-	$.getJSON( "http://localhost:8081/instrument/1/get", function( data ) {
-	parseFloat(data);
+	//$.getJSON( "http://localhost:8081/instrument/1/get", function( data ) {
+	//parseFloat(data);});
 
 		// dataPoints
+		var length = 5;
 		var dataPoints1 = [];
+		
 		var dataPoints2 = [];
+		
         var dataPoints3 = [];
+		
         var dataPoints4 = [];
+		
         var dataPoints5 = [];
+		
         var dataPoints6 = [];
+		
+		
+		
 
 		var chart = new CanvasJS.Chart("chartContainer",{
 			zoomEnabled: true,
@@ -113,35 +122,27 @@ window.onload = function () {
 
 		
 		
-		var updateInterval = 500;
-		
-		// initial value
-		var yValue1 =  data.contextElement.attributes[0].value;
+		var updateInterval = 3000;
+
+		var time = new Date;
+	
+		var updateChart = function () {			
+		 
+				
+		$.getJSON( "http://localhost:8081/instrument/1/get", function( data ) {
+					parseFloat(data);				
+				
+		var yValue1 = data.contextElement.attributes[0].value;
 		var yValue2 = data.contextElement.attributes[1].value;
         var yValue3 = data.contextElement.attributes[2].value;
         var yValue4 = data.contextElement.attributes[3].value;
         var yValue5 = data.contextElement.attributes[4].value;
         var yValue6 = data.contextElement.attributes[5].value;
-
-		var time = new Date;
-			var updateChart = function (count) {
-			count = count || 1;
-
-			// count is number of times loop runs to generate random dataPoints. 
-
-			for (var i = 0; i < count; i++) {
+					 
 				
 				// add interval duration to time				
-				time.setTime(time.getTime()- updateInterval);
+				time.setTime(time.getTime()+updateInterval);
 
-
-				// generating random values
-				/*var deltaY1 = .5 + Math.random() *(-.5-.5);
-				var deltaY2 = .5 + Math.random() *(-.5-.5);
-                var deltaY3 = .5 + Math.random() *(-.5-.5);
-                var deltaY4 = .5 + Math.random() *(-.5-.5);
-                var deltaY5 = .5 + Math.random() *(-.5-.5);
-                var deltaY6 = .5 + Math.random() *(-.5-.5);*/
 
 				// adding random value and rounding it to two digits. 
 				yValue1 = Math.round(yValue1);
@@ -178,23 +179,30 @@ window.onload = function () {
 					x: time.getTime(),
 					y: yValue6
 				});
-
-                
-			};
+				
+					
+				});
+				
+				 
+             chart.render();   
+				setInterval(function(){updateChart()},updateInterval);
+				
+		 
             
 
 			// updating legend text with  updated with y Value 
 			/*chart.options.data[0].legendText = " Actual  " + yValue1;
 			chart.options.data[1].legendText = " Target  " + yValue2; */
 
-			chart.render();
+			//chart.render();
 
-		};
+		}
 
 		// generates first set of dataPoints 
-		updateChart(1000);	
+		updateChart();
+		chart.render();
 		 
 		// update chart after specified interval 
-		setInterval(function(){updateChart()},updateInterval);
-		});
+		//setInterval(function(){updateChart();},updateInterval);
+		 
 	}

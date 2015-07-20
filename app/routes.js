@@ -85,6 +85,61 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+    
+    
+     // =====================================
+    // ORION Routes ==============================
+    // =====================================
+    
+    
+    
+        // configuration orion ===============================================================
+var prompt = require('prompt');
+var config = require('../node/config');
+var context = require('../node/context');
+if(config.app.validation)
+{
+
+    var prompt = require('prompt');
+    var properties = [
+    {
+      name: 'username', 
+      //validator: /^[a-zA-Z\s\-]+$/,
+      //warning: 'Username must be only letters, spaces, or dashes'
+    },
+    {
+      name: 'password',
+      hidden: true
+    }
+    ];
+
+    prompt.start();
+
+    prompt.get(properties, function (err, result) {
+        if (err) { 
+            console.log(err);
+            return 1; 
+        }
+        config.username = result.username;
+        config.password = result.password;
+
+    });
+
+}
+    
+if(config.orion.enabled) 
+{
+
+    context.intiailize(config.username,  config.password);
+    app.get('/instrument/mac_address', context.getInstrumentMacAddress);
+    //app.get('/instrument/query', context.queryInstrument);
+    app.get('/instrument/:id/add', context.addInstrument);
+    app.get('/instrument/:id/get/:attribute', context.getInstrumentAtributeValue);
+    app.get('/instrument/:id/update/:attribute', context.updateInstrumentAtributeValue); 
+    app.get('/instrument/:id/get/', context.getInstrumentDataById);
+
+}
+                               
 };
 
 // route middleware to make sure a user is logged in

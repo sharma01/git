@@ -9,6 +9,8 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="//www.chartjs.org/assets/Chart.min.js"></script>
+<script src="js/dashboard.js"></script>
+
 <script>
 jQuery(function(){
         $("#update_password").click(function(){
@@ -63,30 +65,44 @@ jQuery(function(){
       </nav>
     </br> </br>
     
-    <div class="menu">
+	<div class="menu">
   
-      
+         <div class="panel panel-success">
+			  <div class="panel-heading">
+                    <h3 class="panel-title">Printer Menu</h3>
+                </div>
             <form type=get action="#">
         
         <table style="width:100%">
   <tr>
-      <td><a href="/dashboard?name=elephant"> <div class="printer_menu" id = "printer1" value ="elephant" style="background-color:#00FFFF;"><img id ="p1" class="printer_image" src="/images/3dprinter.jpg" height="220px" width="230px"  value ="elephant" ></div></a> 
-		 </br> <p class="printer_text">Name : Elephant</p><p class="printer_text">Status: On-Hold</p>     
+	  <td> <div class="well" id = "printer"><a href="/dashboard?name=elephant"><img class="thumbnail" id ="p1" src="/images/3dprinter.jpg" height="220px" width="230px"></a></div>  
+		 </br> <p class="printer_text">Name : Elephant</p><p class="printer_text">Status: On-Hold</p>
+		 
+			      </td>
+				<td> <div class="well" id = "printer" ><a href="/dashboard?name=sparrow"><img class="thumbnail" id ="p2" src="/images/3dprinter.jpg" height="220px" width="230px"></a></div>   
+		  </br><p class="printer_text">Name : Sparrow</p><p class="printer_text">Status:Waiting</p>
+		  
       </td>
-      <td><a href="/dashboard?name=sparrow"> <div class="printer_menu" id = "printer2" value="sparrow" style = "background-color:#E6E6E6;"><img id ="p2" class="printer_image" src="/images/3dprinter.jpg" height="220px" width="230px" value ="sparrow"></div></a></br><p class="printer_text">Name : Sparrow</p><p class="printer_text">Status:Waiting</p>    
+	<td> <div class="well" id = "printer" ><a href="/dashboard?name=horse"> <img class="thumbnail" id ="p3" src="/images/3dprinter.jpg" height="220px" width="230px"></a>
+          </div>     
+		  
+		  </br><p class="printer_text">Name : Horse</p><p class="printer_text">Status: Printing</p>
       </td>
-      <td><a href="/dashboard?name=horse"><div class="printer_menu" id = "printer3" value="horse" style = "background-color:#BEF781;" > <img id ="p3" class="printer_image" src="/images/3dprinter.jpg" height="220px" width="230px" value ="horse"></div></a>
-          </br><p class="printer_text">Name : Horse</p><p class="printer_text">Status: Printing</p>
-      </td>
-      <td><a href="/dashboard?name=pegasus"><div class="printer_menu" id = "printer4" value="pegasus" style = "background-color:#F6CEEC;" ><img id ="p4" class="printer_image" src="/images/3dprinter.jpg" height="220px" width="230px" value ="pegasus"></div></a> 
-          </br><p class="printer_text">Name : Pegasus</p><p class="printer_text">Status: Paused</p>
+<td><div class="well" id = "printer" ><a href="/dashboard?name=pegasus"><img class="thumbnail" id ="p4" src="/images/3dprinter.jpg" height="220px" width="230px"> </a></div>   
+
+</br><p class="printer_text">Name : Pegasus</p><p class="printer_text">Status: Paused</p>
+
+
 </td>
   </tr>
-</form>
+
 </table> 
 
+</form>
      
     </div>
+  
+</div><!--Menu Div end-->
   
 
         

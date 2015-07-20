@@ -9,17 +9,29 @@ var path = require('path');
 var morgan       = require('morgan');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-//var dir = './js'
-//var context = require(dir + '/context');
+
+
+
+
+
 
 var configDB = require('./config/database.js');
-
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
-
 require('./config/passport')(passport); // pass passport for configuration
 
+
+
+
+
+
+
 // set up our express application
+app.use(function(req, res, next){
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    next();
+});
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev')); // log every request to the console
 app.use(bodyParser.urlencoded({

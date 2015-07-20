@@ -20,7 +20,7 @@ getmac.getMac(function(err,macAddress){
 
 
 /**
- * Get Query Intrument
+ * Get Query Instrument
  *
  * @param   req: the http server request object
  * @param   res: the http server response object
@@ -31,14 +31,14 @@ exports.intiailize = function(username, password)
     parse.intializeToken(username , password );
 };
 /**
- * Get Query Intrument
+ * Get Query Instrument
  *
  * @param   req: the http server request object
  * @param   res: the http server response object
  */
-exports.queryIntrument = function(req, res)
+exports.queryInstrument = function(req, res)
 {
-    console.log('\ncontext::queryIntrument');
+    console.log('\ncontext::queryInstrument');
     parse.query(mac_address,
         function(statusCode, result)
         {
@@ -50,7 +50,7 @@ exports.queryIntrument = function(req, res)
 };
 
 /**
- * addIntrument
+ * addInstrument
  *
  * @param   req: the http server request object
  * @param   res: the http server response object
@@ -135,6 +135,8 @@ exports.getInstrumentDataById = function(req, res)
         });
     
 };
+
+
 
 exports.updateInstrumentAtributeValue = function(req, res)
 {

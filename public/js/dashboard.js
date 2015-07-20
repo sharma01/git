@@ -1,3 +1,16 @@
+$('#user-info-modal').modal('show')
+
+function getprinter(printer) {
+        
+        var val= document.getElementById(printer).getAttribute("value");
+             
+        var url = "index.html?name=" + val;
+          window.location.href = url;
+}
+
+
+
+
 
 //read data from URL
 function getUrlParam(param)
@@ -18,7 +31,9 @@ var param = getUrlParam("name");
 if (param=="elephant")
 	
 	{ $.getJSON( "http://localhost:8081/instrument/1/get", function (data) { 
-			document.getElementById("p1").innerHTML="G-Code"  ;
+		
+		document.getElementById("info").innerHTML="Elephant"  ;	
+		document.getElementById("p1").innerHTML="G-Code"  ;
 		   document.getElementById("p2").innerHTML="Pink"  ;
 		   document.getElementById("p3").innerHTML="100cm"  ;    
 			document.getElementById("temp1").innerHTML= data.contextElement.attributes[0].value+"°C		 /"+data.contextElement.attributes[1].value +"°C";
@@ -30,7 +45,8 @@ if (param=="elephant")
 	if (param=="sparrow")
 	{   $.getJSON( "http://localhost:8081/instrument/2/get", function (data){
 		
-				document.getElementById("p1").innerHTML="G-Code"  ;
+		document.getElementById("info").innerHTML="Sparrow"  ;			
+		document.getElementById("p1").innerHTML="G-Code"  ;
 				document.getElementById("p2").innerHTML="Black"  ;
 				document.getElementById("p3").innerHTML="200cm"  ;
 			 	document.getElementById("temp1").innerHTML= data.contextElement.attributes[0].value+"°C /"+data.contextElement.attributes[1].value +"°C";
@@ -43,6 +59,7 @@ if (param=="elephant")
 	if (param=="horse")
 	{	
 		$.getJSON( "http://localhost:8081/instrument/3/get", function (data){
+			document.getElementById("info").innerHTML="Horse"  ;	
 			document.getElementById("p1").innerHTML="G-Code"  ;
 			document.getElementById("p2").innerHTML="White"  ;
 			document.getElementById("p3").innerHTML="250cm"  ;
@@ -56,6 +73,7 @@ if (param=="elephant")
 	if (param=="pegasus")
 	{	
 		$.getJSON( "http://localhost:8081/instrument/3/get", function (data){
+			document.getElementById("info").innerHTML="Pegasus"  ;	
 			document.getElementById("p1").innerHTML="G-Code"  ;
 			document.getElementById("p2").innerHTML="White"  ;
 			document.getElementById("p3").innerHTML="250cm"  ;
