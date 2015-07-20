@@ -2,7 +2,6 @@ module.exports = function(app, passport) {
     
     app.use(function(req, res, next){
     
-        console.log("tesing...");
         if(req.user || req.url === '/login' || req.url === '/signup' )
         {
              next();
@@ -22,7 +21,7 @@ module.exports = function(app, passport) {
     // =====================================
 
     app.get('/', function(req, res) {
-        res.redirect('/printermenu'); // load the index.ejs file
+        res.redirect('/printermenu');
     });
     
 
@@ -39,8 +38,8 @@ module.exports = function(app, passport) {
 
     // process the login form
    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/printermenu', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        successRedirect : '/printermenu', // redirect to the secure printer menu section
+        failureRedirect : '/login', // redirect back to the login page if there is an error
         failureFlash : true // allow flash messages
     }));
 
@@ -53,15 +52,15 @@ module.exports = function(app, passport) {
     });
     
      app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/login', // redirect to the secure profile section
+        successRedirect : '/login', // redirect to the printer menu section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
         
     
     app.post('/update', passport.authenticate('local-update', {
-        successRedirect : '/logout', // redirect to the secure profile section
-       // failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        successRedirect : '/logout', 
+       // failureRedirect : '/signup', 
         failureFlash : true // allow flash messages
     }));
     

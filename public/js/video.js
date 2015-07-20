@@ -12,7 +12,7 @@
             var pc;
             var pcConfig = {"iceServers": [
                     {url: "stun:stun.l.google.com:19302"},
-                    {url: "stun:192.168.2.199:3478"}
+                    {url: "stun:" + ipaddress + ":3478"}
                 ]};
             var pcOptions = {
                 optional: [
@@ -89,10 +89,10 @@
                     document.getElementById("stop").disabled = false;
                     document.getElementById("start").disabled = true;
                     document.documentElement.style.cursor ='wait';
-                    server = document.getElementById("signalling_server").value.toLowerCase();
-                    //server = '192.168.86.176:8100';
+                    //server = document.getElementById("signalling_server").value.toLowerCase();
+                   
                     
-                    ws = new WebSocket('ws://' + server + '/stream/webrtc');
+                    ws = new WebSocket('ws://' + ipaddress + ':' +camport+ '/stream/webrtc');
                     ws.onopen = function () {
                         console.log("onopen()");
                         createPeerConnection();
