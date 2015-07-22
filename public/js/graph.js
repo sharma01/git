@@ -129,15 +129,15 @@ window.onload = function () {
 		var updateChart = function () {			
 		 
 				
-		$.getJSON( "http://localhost:8081/instrument/1/get", function( data ) {
+		$.getJSON( "/instrument/1/get", function( data ) {
 					parseFloat(data);				
 				
-		var yValue1 = data.contextElement.attributes[0].value;
-		var yValue2 = data.contextElement.attributes[1].value;
-        var yValue3 = data.contextElement.attributes[2].value;
-        var yValue4 = data.contextElement.attributes[3].value;
-        var yValue5 = data.contextElement.attributes[4].value;
-        var yValue6 = data.contextElement.attributes[5].value;
+		var yValue1 = data.contextElement.attributes[1].value;
+		var yValue2 = data.contextElement.attributes[2].value;
+        var yValue3 = data.contextElement.attributes[3].value;
+        var yValue4 = data.contextElement.attributes[4].value;
+        var yValue5 = data.contextElement.attributes[5].value;
+        var yValue6 = data.contextElement.attributes[6].value;
 					 
 				
 				// add interval duration to time				

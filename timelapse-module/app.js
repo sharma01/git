@@ -47,6 +47,16 @@ var stopcapturing = function(callback)
 
 };
 
+var makevideo = function(callback)
+{
+        exec("./makevideo.sh", function (error, stdout, stderr) {
+          if (error !== null) {
+              return;
+          }
+        });
+
+};
+
 
 app.get('/startscript', function(req, res) {
     
@@ -78,7 +88,8 @@ app.get('/stopscript', function(req, res) {
           res.send("Error:" + err);
           }
       
-        });           
+        });
+    makevideo();
     });
 
 
